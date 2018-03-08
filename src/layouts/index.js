@@ -7,11 +7,23 @@ import legitLogo from "./legitLogo.png";
 import { rhythm } from "../utils/typography"
 
 import "../styles/main.sass"
+import "../styles/hilit.scss"
+
+import LegitHeader from "../components/legitHeader"
+import HiOne from "../components/hiOne"
+import HiTwo from "../components/hiTwo"
+import HiThree from "../components/hiThree"
+import LegitFooter from "../components/legitFooter"
+import LegitScripts from "../components/legitScripts"
 
 const linkStyle = css({ float: `right` })
 
 export default ({ children, data }) =>
     <g.Div>
+      <LegitHeader />
+      <HiOne />
+      <HiTwo />
+      <HiThree />
       <div className='headtastic'>
         <div className='portal'>
           <Link to={`/`}>
@@ -30,6 +42,8 @@ export default ({ children, data }) =>
       <div className='portal'>
         {children()}
       </div>
+      <LegitFooter />
+      <LegitScripts />
     </g.Div>
 
 export const query = graphql`
