@@ -20,10 +20,6 @@ const linkStyle = css({ float: `right` })
 
 export default ({ children, data }) =>
     <g.Div>
-      <LegitHeader />
-      <HiOne />
-      <HiTwo />
-      <HiThree />
       <div className='headtastic'>
         <div className='portal'>
           <Link to={`/`}>
@@ -39,6 +35,10 @@ export default ({ children, data }) =>
       <div className='legitLogo'>
         <img src={legitLogo} height="242" alt="Legitblock" className='Thor-center' />
       </div>
+      <LegitHeader />
+      <HiOne />
+      <HiTwo />
+      <HiThree />
       <div className='portal'>
         {children()}
       </div>
