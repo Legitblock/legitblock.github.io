@@ -2,7 +2,7 @@ import React from "react"
 import g from "glamorous"
 import { css } from "glamor"
 import Link from "gatsby-link"
-import legitLogo from "./legitLogo.png";
+import legitLogo from "./legitLogo.jpg";
 
 import { rhythm } from "../utils/typography"
 
@@ -25,7 +25,7 @@ export default ({ children, data }) =>
         </div>
       </div>
       <div className='legitLogo'>
-        <img src={legitLogo} height="242" alt="Legitblock" className='Thor-center' />
+        <img src={legitLogo} height="200" alt="Legitblock" className='Thor-center' />
       </div>
       <div className='portal'>
         {children()}

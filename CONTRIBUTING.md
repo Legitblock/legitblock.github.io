@@ -1,7 +1,10 @@
 # 0 to 60 start contributing to this project fast
 
+It should be noted that you should branch from the gatsby branch and not
+master!  Master is overwritten by [travisCI](https://travis-ci.org/) and is a static render of the gatsby branch!
+
 1. click the fork button and fork this project
-1. clone your fork
+1. clone your fork, and checkout the gatsby branch
 1. cd into your fork's directory and `npm i` to install all node dependencies
 1. serve a local dev copy with `gatsby develop` 
 1. you will have a local copy running on http://localhost:8000/
