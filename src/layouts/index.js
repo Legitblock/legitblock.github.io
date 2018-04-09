@@ -2,7 +2,7 @@ import React from "react"
 import g from "glamorous"
 import { css } from "glamor"
 import Link from "gatsby-link"
-import legitLogo from "./legitLogo.png";
+import legitLogo from "./legitLogo.jpg";
 
 import { rhythm } from "../utils/typography"
 
