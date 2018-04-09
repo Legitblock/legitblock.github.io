@@ -25,7 +25,7 @@ export default ({ children, data }) =>
         </div>
       </div>
       <div className='legitLogo'>
-        <img src={legitLogo} height="300" alt="Legitblock" className='Thor-center' />
+        <img src={legitLogo} height="200" alt="Legitblock" className='Thor-center' />
       </div>
       <div className='portal'>
         {children()}
