@@ -1,0 +1,2 @@
+webpackJsonp([0xefeaa6d1881d],{363:function(e,t,n){(function(l){"use strict";function o(e){return e&&e.__esModule?e:{default:e}}t.__esModule=!0;var a=n(6);o(a);t.default=function(){return l.createElement("div",null,l.createElement("h1",null,"About Legitblock "),l.createElement("p",null,"Legitblock aims to integrate the blockchain, git, organization voting and legal documents. Git blame just took on a whole new level of meaning!"))},e.exports=t.default}).call(t,n(38))}});
+//# sourceMappingURL=component---src-pages-about-js-2607ee1f5ccd61906e46.js.map
