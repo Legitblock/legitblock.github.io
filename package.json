@@ -1,20 +1,30 @@
 {
-  "name": "gatsby-starter-hello-world",
-  "description": "Gatsby hello world starter",
-  "license": "MIT",
+  "name": "legitblock-github-io",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "deploy": "gatsby build && gh-pages -d public -b master"
+    "dev": "next dev -p 3001",
+    "build": "next build",
+    "start": "next start -p 3001",
+    "lint": "next lint"
   },
   "dependencies": {
-    "gatsby": "^1.9.119",
-    "gatsby-link": "^1.6.28",
-    "gatsby-plugin-glamor": "^1.6.9",
-    "gatsby-plugin-sass": "^1.0.15",
-    "gatsby-plugin-typography": "^1.7.10",
-    "gatsby-source-filesystem": "^1.5.9",
-    "gatsby-transformer-remark": "^1.7.23",
-    "glamorous": "^4.11.0",
-    "halogen": "^0.2.0",
-    "typography-theme-kirkham": "^0.16.3"
+    "@legitblock/legitblock-utils": "workspace:*",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.441.0",
+    "next": "^14.2.15",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^2.5.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13",
+    "typescript": "^5.5.4"
   }
 }
