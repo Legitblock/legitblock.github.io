@@ -1,0 +1,108 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - '**'
+      - '!gh-pages'
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  typecheck:
+    name: TypeScript Static Typecheck
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 12.3.4
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run TypeScript Compiler (tsc --noEmit)
+        run: pnpm typecheck
+
+  build:
+    name: Production Static Export & Integrity Verification
+    runs-on: ubuntu-latest
+    needs: typecheck
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 12.3.4
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Next.js Production Static Site
+        run: pnpm build
+
+      - name: Verify Static Export Directory & Artifacts
+        run: |
+          echo "Verifying static export output..."
+          test -d out || { echo "Error: out directory was not generated!"; exit 1; }
+          test -f out/index.html || { echo "Error: out/index.html is missing!"; exit 1; }
+          test -f out/404.html || { echo "Error: out/404.html is missing!"; exit 1; }
+          test -f out/playground.html || { echo "Error: out/playground.html is missing!"; exit 1; }
+          test -f out/templates.html || { echo "Error: out/templates.html is missing!"; exit 1; }
+          test -f out/architecture.html || { echo "Error: out/architecture.html is missing!"; exit 1; }
+          test -f out/why-blockchain.html || { echo "Error: out/why-blockchain.html is missing!"; exit 1; }
+          test -f out/cli.html || { echo "Error: out/cli.html is missing!"; exit 1; }
+          test -f out/core-library.html || { echo "Error: out/core-library.html is missing!"; exit 1; }
+          test -f out/api-reference.html || { echo "Error: out/api-reference.html is missing!"; exit 1; }
+          test -f out/web-app.html || { echo "Error: out/web-app.html is missing!"; exit 1; }
+          echo "All critical static routes and HTML files verified successfully!"
+          echo "Total exported files count: $(find out -type f | wc -l)"
+
+  security:
+    name: Dependency Security Audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 12.3.4
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Run Advisory Scan
+        run: |
+          echo "Scanning dependencies for known advisories..."
+          pnpm audit || true

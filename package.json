@@ -7,7 +7,8 @@
     "dev": "next dev -p 3001",
     "build": "next build",
     "start": "next start -p 3001",
-    "lint": "next lint"
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "clsx": "^2.1.1",
@@ -26,9 +27,7 @@
     "tailwindcss": "^3.4.13",
     "typescript": "^5.5.4"
   },
-  "pnpm": {
-    "overrides": {
-      "postcss": ">=8.5.23"
-    }
+  "overrides": {
+    "postcss": ">=8.5.23"
   }
 }
