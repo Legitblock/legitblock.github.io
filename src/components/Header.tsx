@@ -15,6 +15,7 @@ import {
   X,
   ExternalLink
 } from "lucide-react";
+import { ThemeChooser } from "./ThemeChooser";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -82,6 +83,7 @@ export function Header() {
 
           {/* Right Action Buttons */}
           <div className="hidden sm:flex items-center gap-3">
+            <ThemeChooser />
             <Link
               href="/playground"
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-emerald-700 bg-emerald-100/80 hover:bg-emerald-200/80 transition-colors border border-emerald-300/60"
@@ -102,8 +104,9 @@ export function Header() {
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button & Mobile Theme Chooser */}
           <div className="flex lg:hidden items-center gap-2">
+            <ThemeChooser compact />
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100"
@@ -135,7 +138,11 @@ export function Header() {
               </Link>
             );
           })}
-          <div className="pt-3 border-t border-slate-100 flex gap-2">
+          <div className="pt-3 border-t border-slate-100 flex flex-col gap-2">
+            <div className="flex items-center justify-between py-1 px-1">
+              <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Appearance Theme</span>
+              <ThemeChooser />
+            </div>
             <Link
               href="/playground"
               onClick={() => setMobileMenuOpen(false)}

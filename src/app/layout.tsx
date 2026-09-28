@@ -33,6 +33,39 @@ export default function RootLayout({
             `,
           }}
         />
+        {/* Anti-FOUT theme bootstrap script */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+(function() {
+  try {
+    var saved = localStorage.getItem('legitblock_theme');
+    var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    if (['light', 'dark', 'sepia', 'cyber'].indexOf(theme) !== -1) {
+      document.documentElement.setAttribute('data-theme', theme);
+      if (theme === 'dark' || theme === 'cyber') {
+        document.documentElement.classList.add('dark');
+      }
+    }
+  } catch (e) {}
+})();
+            `,
+          }}
+        />
+        {/* PWA & Service Worker Registration */}
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#10b981" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+if ('serviceWorker' in navigator && (window.location.protocol === 'https:' || window.location.hostname === 'localhost')) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js').catch(function(){});
+  });
+}
+            `,
+          }}
+        />
       </head>
       <body className="min-h-screen flex flex-col bg-slate-50 text-slate-900 antialiased selection:bg-emerald-500 selection:text-white">
         <Header />

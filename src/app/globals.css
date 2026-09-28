@@ -18,6 +18,7 @@ body {
     rgb(var(--background-start-rgb));
   min-height: 100vh;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 /* Custom Scrollbar */
@@ -38,4 +39,409 @@ body {
 
 .code-font {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* ==========================================================================
+   THEME: OBSIDIAN DARK (data-theme="dark")
+   Cryptographic Deep Ledger Night
+   ========================================================================== */
+[data-theme="dark"] {
+  --foreground-rgb: 241, 245, 249;
+  --background-start-rgb: 11, 17, 32;
+  --background-end-rgb: 15, 23, 42;
+}
+
+[data-theme="dark"] body {
+  background-color: #0b1120 !important;
+  color: #f1f5f9 !important;
+}
+
+/* Surfaces & Containers */
+[data-theme="dark"] .bg-white {
+  background-color: #0f172a !important;
+}
+[data-theme="dark"] .bg-white\/90,
+[data-theme="dark"] header.bg-white\/90 {
+  background-color: rgba(15, 23, 42, 0.92) !important;
+}
+[data-theme="dark"] .bg-white\/80 {
+  background-color: rgba(15, 23, 42, 0.82) !important;
+}
+[data-theme="dark"] .bg-slate-50 {
+  background-color: #0b1120 !important;
+}
+[data-theme="dark"] .bg-slate-100 {
+  background-color: #1e293b !important;
+}
+[data-theme="dark"] .bg-slate-200 {
+  background-color: #334155 !important;
+}
+
+/* Hover States */
+[data-theme="dark"] .hover\:bg-slate-50:hover,
+[data-theme="dark"] .hover\:bg-white:hover {
+  background-color: #1e293b !important;
+}
+[data-theme="dark"] .hover\:bg-slate-100:hover {
+  background-color: #334155 !important;
+}
+[data-theme="dark"] .hover\:bg-slate-200:hover {
+  background-color: #475569 !important;
+}
+
+/* Typography */
+[data-theme="dark"] .text-slate-900,
+[data-theme="dark"] .text-slate-800 {
+  color: #f8fafc !important;
+}
+[data-theme="dark"] .text-slate-700 {
+  color: #e2e8f0 !important;
+}
+[data-theme="dark"] .text-slate-600 {
+  color: #cbd5e1 !important;
+}
+[data-theme="dark"] .text-slate-500 {
+  color: #94a3b8 !important;
+}
+[data-theme="dark"] .text-slate-400 {
+  color: #64748b !important;
+}
+[data-theme="dark"] .text-emerald-950 {
+  color: #ecfdf5 !important;
+}
+
+/* Borders */
+[data-theme="dark"] .border-slate-100,
+[data-theme="dark"] .border-slate-200 {
+  border-color: #1e293b !important;
+}
+[data-theme="dark"] .border-slate-300 {
+  border-color: #334155 !important;
+}
+
+/* Brand Emerald Tints in Dark Mode */
+[data-theme="dark"] .bg-emerald-50 {
+  background-color: rgba(16, 185, 129, 0.12) !important;
+}
+[data-theme="dark"] .bg-emerald-100 {
+  background-color: rgba(16, 185, 129, 0.2) !important;
+}
+[data-theme="dark"] .text-emerald-700,
+[data-theme="dark"] .text-emerald-800 {
+  color: #6ee7b7 !important;
+}
+[data-theme="dark"] .border-emerald-200,
+[data-theme="dark"] .border-emerald-300 {
+  border-color: rgba(16, 185, 129, 0.35) !important;
+}
+
+/* Form Elements */
+[data-theme="dark"] input,
+[data-theme="dark"] select,
+[data-theme="dark"] textarea {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+}
+
+/* Hero Section Gradient Overrides */
+[data-theme="dark"] .from-emerald-50\/60 {
+  --tw-gradient-from: rgba(16, 185, 129, 0.1) var(--tw-gradient-from-position) !important;
+}
+[data-theme="dark"] .via-white {
+  --tw-gradient-stops: var(--tw-gradient-from), #0b1120 var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+}
+[data-theme="dark"] .to-slate-50 {
+  --tw-gradient-to: #0b1120 var(--tw-gradient-to-position) !important;
+}
+
+/* Scrollbar */
+[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: #0b1120;
+}
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* ==========================================================================
+   THEME: CHANCERY PARCHMENT (data-theme="sepia")
+   Archival Delaware Legal Record & Warm Brass Accents
+   ========================================================================== */
+[data-theme="sepia"] {
+  --foreground-rgb: 44, 35, 26;
+  --background-start-rgb: 250, 246, 238;
+  --background-end-rgb: 244, 237, 224;
+}
+
+[data-theme="sepia"] body {
+  background-color: #faf6ee !important;
+  color: #2c231a !important;
+}
+
+/* Surfaces & Containers */
+[data-theme="sepia"] .bg-white {
+  background-color: #fffdf9 !important;
+}
+[data-theme="sepia"] .bg-white\/90,
+[data-theme="sepia"] header.bg-white\/90 {
+  background-color: rgba(250, 246, 238, 0.94) !important;
+}
+[data-theme="sepia"] .bg-white\/80 {
+  background-color: rgba(250, 246, 238, 0.88) !important;
+}
+[data-theme="sepia"] .bg-slate-50 {
+  background-color: #faf6ee !important;
+}
+[data-theme="sepia"] .bg-slate-100 {
+  background-color: #f3ecdd !important;
+}
+[data-theme="sepia"] .bg-slate-200 {
+  background-color: #e6dcce !important;
+}
+[data-theme="sepia"] .bg-slate-900 {
+  background-color: #241d17 !important;
+}
+[data-theme="sepia"] .bg-slate-950 {
+  background-color: #1a1510 !important;
+}
+
+/* Hover States */
+[data-theme="sepia"] .hover\:bg-slate-50:hover,
+[data-theme="sepia"] .hover\:bg-white:hover {
+  background-color: #f5eee2 !important;
+}
+[data-theme="sepia"] .hover\:bg-slate-100:hover {
+  background-color: #ebe2d0 !important;
+}
+[data-theme="sepia"] .hover\:bg-slate-200:hover {
+  background-color: #dfd2be !important;
+}
+
+/* Typography */
+[data-theme="sepia"] .text-slate-900,
+[data-theme="sepia"] .text-slate-800 {
+  color: #251c14 !important;
+}
+[data-theme="sepia"] .text-slate-700 {
+  color: #43362a !important;
+}
+[data-theme="sepia"] .text-slate-600 {
+  color: #5d4d3e !important;
+}
+[data-theme="sepia"] .text-slate-500 {
+  color: #7d6c5b !important;
+}
+[data-theme="sepia"] .text-slate-400 {
+  color: #9c8a79 !important;
+}
+[data-theme="sepia"] .text-slate-300 {
+  color: #cfbeab !important;
+}
+[data-theme="sepia"] .text-emerald-950 {
+  color: #451a03 !important;
+}
+
+/* Borders */
+[data-theme="sepia"] .border-slate-100,
+[data-theme="sepia"] .border-slate-200 {
+  border-color: #e5dac9 !important;
+}
+[data-theme="sepia"] .border-slate-300 {
+  border-color: #d6c7b3 !important;
+}
+[data-theme="sepia"] .border-slate-800 {
+  border-color: #382c23 !important;
+}
+
+/* Archival Amber / Legal Wax Accents */
+[data-theme="sepia"] .bg-emerald-50 {
+  background-color: #fef3c7 !important;
+}
+[data-theme="sepia"] .bg-emerald-100 {
+  background-color: #fde68a !important;
+}
+[data-theme="sepia"] .text-emerald-700,
+[data-theme="sepia"] .text-emerald-800 {
+  color: #92400e !important;
+}
+[data-theme="sepia"] .text-emerald-600 {
+  color: #b45309 !important;
+}
+[data-theme="sepia"] .border-emerald-200,
+[data-theme="sepia"] .border-emerald-300 {
+  border-color: #fcd34d !important;
+}
+
+/* Form Elements */
+[data-theme="sepia"] input,
+[data-theme="sepia"] select,
+[data-theme="sepia"] textarea {
+  background-color: #fffdf9 !important;
+  color: #2c231a !important;
+  border-color: #d6c7b3 !important;
+}
+
+/* Hero Section Gradient Overrides */
+[data-theme="sepia"] .from-emerald-50\/60 {
+  --tw-gradient-from: rgba(180, 83, 9, 0.08) var(--tw-gradient-from-position) !important;
+}
+[data-theme="sepia"] .via-white {
+  --tw-gradient-stops: var(--tw-gradient-from), #faf6ee var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+}
+[data-theme="sepia"] .to-slate-50 {
+  --tw-gradient-to: #faf6ee var(--tw-gradient-to-position) !important;
+}
+
+/* Scrollbar */
+[data-theme="sepia"] ::-webkit-scrollbar-track {
+  background: #faf6ee;
+}
+[data-theme="sepia"] ::-webkit-scrollbar-thumb {
+  background: #d6c7b3;
+}
+[data-theme="sepia"] ::-webkit-scrollbar-thumb:hover {
+  background: #b8a68e;
+}
+
+/* ==========================================================================
+   THEME: CYBER TERMINAL (data-theme="cyber")
+   Neon Matrix Phosphor & Cybernetic Terminal
+   ========================================================================== */
+[data-theme="cyber"] {
+  --foreground-rgb: 74, 222, 128;
+  --background-start-rgb: 2, 6, 23;
+  --background-end-rgb: 3, 7, 18;
+}
+
+[data-theme="cyber"] body {
+  background-color: #020617 !important;
+  color: #4ade80 !important;
+}
+
+/* Surfaces & Containers */
+[data-theme="cyber"] .bg-white {
+  background-color: #040c1e !important;
+}
+[data-theme="cyber"] .bg-white\/90,
+[data-theme="cyber"] header.bg-white\/90 {
+  background-color: rgba(2, 6, 23, 0.94) !important;
+}
+[data-theme="cyber"] .bg-white\/80 {
+  background-color: rgba(4, 12, 30, 0.88) !important;
+}
+[data-theme="cyber"] .bg-slate-50 {
+  background-color: #020617 !important;
+}
+[data-theme="cyber"] .bg-slate-100 {
+  background-color: #081630 !important;
+}
+[data-theme="cyber"] .bg-slate-200 {
+  background-color: #0f2752 !important;
+}
+[data-theme="cyber"] .bg-slate-900 {
+  background-color: #020617 !important;
+}
+[data-theme="cyber"] .bg-slate-950 {
+  background-color: #01040f !important;
+}
+
+/* Hover States */
+[data-theme="cyber"] .hover\:bg-slate-50:hover,
+[data-theme="cyber"] .hover\:bg-white:hover {
+  background-color: #081630 !important;
+}
+[data-theme="cyber"] .hover\:bg-slate-100:hover {
+  background-color: #0d2146 !important;
+}
+[data-theme="cyber"] .hover\:bg-slate-200:hover {
+  background-color: #123063 !important;
+}
+
+/* Typography */
+[data-theme="cyber"] .text-slate-900,
+[data-theme="cyber"] .text-slate-800 {
+  color: #4ade80 !important;
+}
+[data-theme="cyber"] .text-slate-700 {
+  color: #86efac !important;
+}
+[data-theme="cyber"] .text-slate-600 {
+  color: #86efac !important;
+}
+[data-theme="cyber"] .text-slate-500 {
+  color: #22c55e !important;
+}
+[data-theme="cyber"] .text-slate-400 {
+  color: #16a34a !important;
+}
+[data-theme="cyber"] .text-slate-300 {
+  color: #bbf7d0 !important;
+}
+[data-theme="cyber"] .text-emerald-950 {
+  color: #ecfdf5 !important;
+}
+
+/* Borders */
+[data-theme="cyber"] .border-slate-100,
+[data-theme="cyber"] .border-slate-200 {
+  border-color: rgba(34, 197, 94, 0.3) !important;
+}
+[data-theme="cyber"] .border-slate-300 {
+  border-color: rgba(34, 197, 94, 0.45) !important;
+}
+[data-theme="cyber"] .border-slate-800 {
+  border-color: rgba(34, 197, 94, 0.35) !important;
+}
+
+/* Glowing Neon Phosphor Accents */
+[data-theme="cyber"] .bg-emerald-50 {
+  background-color: rgba(34, 197, 94, 0.12) !important;
+}
+[data-theme="cyber"] .bg-emerald-100 {
+  background-color: rgba(34, 197, 94, 0.22) !important;
+}
+[data-theme="cyber"] .text-emerald-700,
+[data-theme="cyber"] .text-emerald-800 {
+  color: #4ade80 !important;
+}
+[data-theme="cyber"] .text-emerald-600 {
+  color: #22c55e !important;
+}
+[data-theme="cyber"] .border-emerald-200,
+[data-theme="cyber"] .border-emerald-300 {
+  border-color: rgba(34, 197, 94, 0.45) !important;
+}
+
+/* Form Elements */
+[data-theme="cyber"] input,
+[data-theme="cyber"] select,
+[data-theme="cyber"] textarea {
+  background-color: #040c1e !important;
+  color: #4ade80 !important;
+  border-color: rgba(34, 197, 94, 0.5) !important;
+}
+
+/* Hero Section Gradient Overrides */
+[data-theme="cyber"] .from-emerald-50\/60 {
+  --tw-gradient-from: rgba(34, 197, 94, 0.18) var(--tw-gradient-from-position) !important;
+}
+[data-theme="cyber"] .via-white {
+  --tw-gradient-stops: var(--tw-gradient-from), #020617 var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+}
+[data-theme="cyber"] .to-slate-50 {
+  --tw-gradient-to: #020617 var(--tw-gradient-to-position) !important;
+}
+
+/* Scrollbar */
+[data-theme="cyber"] ::-webkit-scrollbar-track {
+  background: #020617;
+}
+[data-theme="cyber"] ::-webkit-scrollbar-thumb {
+  background: #16a34a;
+}
+[data-theme="cyber"] ::-webkit-scrollbar-thumb:hover {
+  background: #22c55e;
 }

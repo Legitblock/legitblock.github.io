@@ -4,9 +4,59 @@ import React, { useState } from "react";
 import { Terminal, Play, Check, Copy } from "lucide-react";
 
 export function TerminalDemo() {
-  const [activeTab, setActiveTab] = useState<"status" | "docs" | "edit" | "vote">("edit");
+  const [activeTab, setActiveTab] = useState<"tree" | "secret-vote" | "edit" | "vote" | "status" | "docs">("tree");
 
   const outputs = {
+    tree: `$ legitblock-cli tree
+
+🌳 CRYPTOGRAPHIC BLOCK TREE (DAG & MERKLE ROOTS)
+────────────────────────────────────────────────────────────
+┌────────────────────────────────────────────────────────┐
+│ Height #0 [GENESIS] Hash: 00003b8f1a... Prev: 00000000 │
+└────────────────────────────────────────────────────────┘
+   │
+   ▼ (SHA-256 Hash Pointer Link)
+┌────────────────────────────────────────────────────────┐
+│ Height #1 [DOCUMENT_INSERT] Hash: 00008e4c2...         │
+│ Merkle Root: 0x9f83... Clauses: 8 ratified             │
+└────────────────────────────────────────────────────────┘
+   │
+   ▼ (SHA-256 Hash Pointer Link)
+┌────────────────────────────────────────────────────────┐
+│ Height #2 [AMENDMENT_PROPOSAL] Hash: 00004a11...       │
+│ Merkle Root: 0x2b44... Covenants: 4 active (DGCL §224) │
+└────────────────────────────────────────────────────────┘
+   │
+   ▼ (SHA-256 Hash Pointer Link)
+┌────────────────────────────────────────────────────────┐
+│ Height #3 [VOTE_TALLY] Hash: 0000c921... Quorum: 100%  │
+│ Ratification Status: RATIFIED & ANCHORED               │
+└────────────────────────────────────────────────────────┘
+
+✔ All 4 blocks cryptographically contiguous and verified.`,
+
+    "secret-vote": `$ legitblock-cli secret-vote prop-2026-004 --choice yes
+
+🔒 GENERATING BLINDED PEDERSEN COMMITMENT
+────────────────────────────────────────
+RFC 3526 MODP Group (g)     : 2 (1536-bit Prime Field)
+Blinding Factor (r)         : 0x4e8a1f29b7... (Cryptographically random)
+Vote Secret (v)             : 1 (YES)
+Commitment C = g^v · h^r (p): 0x7c941a884f2e9102b38...
+
+✔ Secret ballot cast anonymously to mempool!
+Individual voter choices remain 100% private.
+
+────────────────────────────────────────
+HOMOMORPHIC TALLY AGGREGATION:
+Total Ballots Cast : 5
+Aggregate C_total  : ∏ C_i = 0x3d82a170f8...
+Total Sum r_total  : ∑ r_i = 0x918ba0421e...
+Opening Equation   : g^(∑ v_i) · h^(∑ r_i) ≡ C_total (mod p)
+Verified Result    : 4 YES, 1 NO (80% Supermajority Achieved)
+
+🎉 ZERO-KNOWLEDGE PROPOSAL RATIFIED WITHOUT UNBLINDING VOTERS!`,
+
     status: `$ legitblock-cli status --endpoint http://localhost:3000
 
 🔗 LEGITBLOCK NETWORK STATUS
@@ -95,14 +145,30 @@ Block #5 successfully committed. Hash: 000f72a1b920...`
         </div>
 
         {/* Command tabs */}
-        <div className="flex items-center gap-1 bg-slate-950 p-1 rounded-lg border border-slate-800 text-[11px] font-mono">
+        <div className="flex flex-wrap items-center gap-1 bg-slate-950 p-1 rounded-lg border border-slate-800 text-[11px] font-mono">
+          <button
+            onClick={() => setActiveTab("tree")}
+            className={`px-2.5 py-1 rounded transition-colors ${
+              activeTab === "tree" ? "bg-emerald-950 text-emerald-300 font-bold border border-emerald-800/80" : "text-slate-400 hover:text-white"
+            }`}
+          >
+            $ legitblock tree
+          </button>
+          <button
+            onClick={() => setActiveTab("secret-vote")}
+            className={`px-2.5 py-1 rounded transition-colors ${
+              activeTab === "secret-vote" ? "bg-emerald-950 text-emerald-300 font-bold border border-emerald-800/80" : "text-slate-400 hover:text-white"
+            }`}
+          >
+            $ legitblock secret-vote
+          </button>
           <button
             onClick={() => setActiveTab("edit")}
             className={`px-2.5 py-1 rounded transition-colors ${
               activeTab === "edit" ? "bg-emerald-950 text-emerald-300 font-bold border border-emerald-800/80" : "text-slate-400 hover:text-white"
             }`}
           >
-            $ legitblock edit ($EDITOR)
+            $ legitblock edit
           </button>
           <button
             onClick={() => setActiveTab("vote")}

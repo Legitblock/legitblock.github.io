@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { Sidebar } from "../../components/Sidebar";
 import { TemplateCatalog } from "../../components/TemplateCatalog";
+import { TemplateWizard } from "../../components/TemplateWizard";
 import { 
   Building2, 
   HeartHandshake, 
@@ -31,6 +32,9 @@ export default function TemplatesPage() {
               Explore 32 pre-configured, battle-tested entity charters across For-Profit Corporations, Non-Profit Charities, and Democratic Cooperatives. Each template includes complete initial founding documents, default quorum rules, and statutory governance parameters.
             </p>
           </div>
+
+          {/* Interactive Entity Selector Wizard */}
+          <TemplateWizard />
 
           {/* Interactive Catalog Component */}
           <TemplateCatalog />
