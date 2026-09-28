@@ -25,7 +25,13 @@ interface StatutoryPdfGeneratorProps {
 }
 
 function escapePdf(text: string): string {
-  return String(text).replace(/\\/g, "\\\\").replace(/\(/g, "\\(").replace(/\)/g, "\\)");
+  // Normalize Unicode characters to standard WinAnsi / ASCII equivalents
+  const normalized = String(text)
+    .replace(/[\u2018\u2019]/g, "'")
+    .replace(/[\u201C\u201D]/g, '"')
+    .replace(/[\u2013\u2014]/g, "-")
+    .replace(/[^\x20-\x7E]/g, "?");
+  return normalized.replace(/\\/g, "\\\\").replace(/\(/g, "\\(").replace(/\)/g, "\\)");
 }
 
 function generateSimpleSha256(text: string): string {
@@ -143,9 +149,9 @@ export function StatutoryPdfGenerator({ template, onClose }: StatutoryPdfGenerat
       }
 
       const startXref = new TextEncoder().encode(out).length;
-      out += "xref\n0 8\n0000000000 65535 f \n";
+      out += "xref\n0 8\n0000000000 65535 f \r\n";
       for (let i = 1; i <= 7; i++) {
-        out += String(xref[i]).padStart(10, "0") + " 00000 n \n";
+        out += String(xref[i]).padStart(10, "0") + " 00000 n \r\n";
       }
       out += `trailer\n<< /Size 8 /Root 1 0 R >>\nstartxref\n${startXref}\n%%EOF\n`;
 

@@ -99,6 +99,15 @@ export function ConsortiumSimulator() {
   const [nodes, setNodes] = useState<ValidatorNode[]>(INITIAL_NODES);
   const [broadcasting, setBroadcasting] = useState(false);
   const [activeStep, setActiveStep] = useState<number>(0);
+  const isMountedRef = React.useRef(true);
+
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
+
   const [gossipLog, setGossipLog] = useState<{ time: string; msg: string; type: "info" | "success" | "danger" | "warn" }[]>([
     {
       time: "10:00:00",
@@ -123,6 +132,7 @@ export function ConsortiumSimulator() {
   });
 
   const addLog = (msg: string, type: "info" | "success" | "danger" | "warn" = "info") => {
+    if (!isMountedRef.current) return;
     const time = new Date().toLocaleTimeString();
     setGossipLog((prev) => [{ time, msg, type }, ...prev.slice(0, 15)]);
   };
@@ -139,11 +149,13 @@ export function ConsortiumSimulator() {
 
     // Step 1: Proposal from DE
     await new Promise((r) => setTimeout(r, 600));
+    if (!isMountedRef.current) return;
     setActiveStep(2);
     addLog(`[Node-DE-1] Gossip packet broadcast to peers. Transmitting Merkle root & DGCL signature...`, "info");
 
     // Step 2: Propagation to NYC & SF
     await new Promise((r) => setTimeout(r, 700));
+    if (!isMountedRef.current) return;
     setActiveStep(3);
     setNodes((prev) =>
       prev.map((n) =>
@@ -156,6 +168,7 @@ export function ConsortiumSimulator() {
 
     // Step 3: Propagation to LDN & Consensus Reached
     await new Promise((r) => setTimeout(r, 800));
+    if (!isMountedRef.current) return;
     setActiveStep(4);
     setNodes((prev) =>
       prev.map((n) => ({
@@ -195,17 +208,20 @@ export function ConsortiumSimulator() {
     );
 
     await new Promise((r) => setTimeout(r, 800));
+    if (!isMountedRef.current) return;
     setActiveStep(2);
     addLog(`[Node-NYC-2] Gossiping fraudulent block to Node-DE-1, Node-SF-3, and Node-LDN-4...`, "warn");
 
     // Step 2: Peers inspect and reject
     await new Promise((r) => setTimeout(r, 1000));
+    if (!isMountedRef.current) return;
     setActiveStep(3);
     addLog(`[Node-DE-1] CRITICAL: Statutory Merkle proof evaluation failed! Missing Independent Director counter-signature.`, "danger");
     addLog(`[Node-SF-3 & LDN-4] BFT Byzantine check failed. Block signature digest mismatch. Dropping packet.`, "danger");
 
     // Step 3: Quarantine rogue node
     await new Promise((r) => setTimeout(r, 900));
+    if (!isMountedRef.current) return;
     setActiveStep(4);
     setNodes((prev) =>
       prev.map((n) => (n.id === "node-nyc-2" ? { ...n, status: "quarantined" } : n))

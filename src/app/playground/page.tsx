@@ -9,6 +9,8 @@ import { VisualRedlineEditor } from "../../components/VisualRedlineEditor";
 import { MerkleClauseInspector } from "../../components/MerkleClauseInspector";
 import { CovenantStudio } from "../../components/CovenantStudio";
 import { ConsortiumSimulator } from "../../components/ConsortiumSimulator";
+import { MerkleProofVerifier } from "../../components/MerkleProofVerifier";
+import { JurisdictionInspector } from "../../components/JurisdictionInspector";
 import { 
   PlayCircle, 
   Sparkles, 
@@ -21,11 +23,13 @@ import {
   FileDiff,
   GitBranch,
   Sliders,
-  Network
+  Network,
+  FileCheck2,
+  Globe
 } from "lucide-react";
 
 export default function PlaygroundPage() {
-  const [activeTab, setActiveTab] = useState<"chain" | "scenarios" | "redline" | "merkle" | "covenants" | "consortium">("chain");
+  const [activeTab, setActiveTab] = useState<"chain" | "scenarios" | "redline" | "merkle" | "covenants" | "consortium" | "verifier" | "jurisdictions">("chain");
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
@@ -119,6 +123,30 @@ export default function PlaygroundPage() {
                 <Network className="w-4 h-4" />
                 <span>6. P2P Consortium Simulator</span>
               </button>
+
+              <button
+                onClick={() => setActiveTab("verifier")}
+                className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition border ${
+                  activeTab === "verifier"
+                    ? "bg-emerald-700 text-white border-emerald-700 shadow-sm"
+                    : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:text-slate-900"
+                }`}
+              >
+                <FileCheck2 className="w-4 h-4" />
+                <span>7. Merkle Proof Verifier</span>
+              </button>
+
+              <button
+                onClick={() => setActiveTab("jurisdictions")}
+                className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition border ${
+                  activeTab === "jurisdictions"
+                    ? "bg-teal-700 text-white border-teal-700 shadow-sm"
+                    : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:text-slate-900"
+                }`}
+              >
+                <Globe className="w-4 h-4" />
+                <span>8. Statutory Jurisdictions</span>
+              </button>
             </div>
           </div>
 
@@ -189,6 +217,18 @@ export default function PlaygroundPage() {
           {activeTab === "consortium" && (
             <div>
               <ConsortiumSimulator />
+            </div>
+          )}
+
+          {activeTab === "verifier" && (
+            <div>
+              <MerkleProofVerifier />
+            </div>
+          )}
+
+          {activeTab === "jurisdictions" && (
+            <div>
+              <JurisdictionInspector />
             </div>
           )}
         </article>

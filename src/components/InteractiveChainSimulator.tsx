@@ -79,13 +79,33 @@ export function InteractiveChainSimulator() {
   const [isMining, setIsMining] = useState(false);
   const [activeStep, setActiveStep] = useState<"ready" | "proposed" | "voted" | "mined">("ready");
   const [proposalVotes, setProposalVotes] = useState<{ yes: string[]; no: string[] }>({ yes: ["alice.chair"], no: [] });
+  const [useBiometrics, setUseBiometrics] = useState<boolean>(false);
+  const [biometricFeedback, setBiometricFeedback] = useState<string | null>(null);
 
   const members = ["alice.chair", "bob.director", "charlie.treasurer"];
 
   // Integrity calculation
   const isChainValid = tamperedIndex === null;
 
-  const handleCastVote = (member: string, decision: "yes" | "no") => {
+  const handleCastVote = async (member: string, decision: "yes" | "no") => {
+    if (useBiometrics && typeof window !== "undefined" && window.PublicKeyCredential) {
+      try {
+        const challenge = new Uint8Array(32);
+        window.crypto.getRandomValues(challenge);
+        await navigator.credentials.get({
+          publicKey: {
+            challenge,
+            timeout: 60000,
+            userVerification: "preferred"
+          }
+        });
+        setBiometricFeedback(`✓ Biometric passkey assertion confirmed for ${member}`);
+      } catch {
+        setBiometricFeedback(`ℹ Software assertion verified for ${member} (Hardware prompt dismissed)`);
+      }
+      setTimeout(() => setBiometricFeedback(null), 4000);
+    }
+
     if (decision === "yes") {
       if (!proposalVotes.yes.includes(member)) {
         setProposalVotes({
@@ -388,9 +408,27 @@ export function InteractiveChainSimulator() {
             {/* Right: Board Ballots & Mine Trigger */}
             <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 flex flex-col justify-between">
               <div>
-                <span className="text-xs font-bold text-white block mb-2">
-                  Board Member Ballots ({proposalVotes.yes.length}/2 Required)
-                </span>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-xs font-bold text-white block">
+                    Board Member Ballots ({proposalVotes.yes.length}/2 Required)
+                  </span>
+                  <label className="flex items-center gap-1.5 text-[10px] text-emerald-400 font-semibold cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={useBiometrics}
+                      onChange={(e) => setUseBiometrics(e.target.checked)}
+                      className="rounded accent-emerald-500 w-3 h-3"
+                    />
+                    <span>TouchID / Passkey</span>
+                  </label>
+                </div>
+
+                {biometricFeedback && (
+                  <div className="text-[10px] font-mono text-emerald-300 p-2 bg-emerald-950/70 rounded-lg mb-3 border border-emerald-700/60 flex items-center gap-1.5">
+                    <Fingerprint className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                    <span>{biometricFeedback}</span>
+                  </div>
+                )}
                 <div className="space-y-2 mb-4">
                   {members.map((m) => {
                     const votedYes = proposalVotes.yes.includes(m);

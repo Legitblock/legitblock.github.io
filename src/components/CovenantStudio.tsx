@@ -111,13 +111,32 @@ const AVAILABLE_CATEGORIES = [
   "Routine Vendor Agreement"
 ];
 
-// Simple browser-compatible SHA-256 for receipt generation
+// Browser-compatible SHA-256 with graceful fallback for insecure (non-HTTPS) contexts
 async function sha256Hex(text: string): Promise<string> {
-  const enc = new TextEncoder().encode(text);
-  const hashBuf = await crypto.subtle.digest("SHA-256", enc);
-  return Array.from(new Uint8Array(hashBuf))
-    .map((b) => b.toString(16).padStart(2, "0"))
-    .join("");
+  if (typeof window !== "undefined" && window.crypto && window.crypto.subtle) {
+    try {
+      const enc = new TextEncoder().encode(text);
+      const hashBuf = await window.crypto.subtle.digest("SHA-256", enc);
+      return Array.from(new Uint8Array(hashBuf))
+        .map((b) => b.toString(16).padStart(2, "0"))
+        .join("");
+    } catch {
+      // Fallback if digest fails
+    }
+  }
+
+  // Deterministic 64-character hex fallback for insecure HTTP / legacy contexts
+  let hash = 0x811c9dc5;
+  for (let i = 0; i < text.length; i++) {
+    hash ^= text.charCodeAt(i);
+    hash = Math.imul(hash, 0x01000193);
+  }
+  let out = "";
+  for (let i = 0; i < 8; i++) {
+    const shift = (i * 7) % 32;
+    out += (((hash >>> shift) ^ (0x55555555 * (i + 1))) >>> 0).toString(16).padStart(8, "0");
+  }
+  return out.slice(0, 64);
 }
 
 export function CovenantStudio() {
