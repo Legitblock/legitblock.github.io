@@ -10,6 +10,7 @@ import {
   Terminal, 
   FileText, 
   Cpu, 
+  FileCheck2,
   PlayCircle,
   Menu,
   X,
@@ -23,6 +24,7 @@ export function Header() {
 
   const navLinks = [
     { href: "/why-blockchain", label: "Why Blockchain?", highlight: true },
+    { href: "/verify", label: "Verify Packet", icon: FileCheck2 },
     { href: "/architecture", label: "Architecture" },
     { href: "/core-library", label: "Core Library" },
     { href: "/web-app", label: "Web App" },

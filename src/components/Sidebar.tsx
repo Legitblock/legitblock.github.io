@@ -83,6 +83,12 @@ export const NAVIGATION_SECTIONS: NavSection[] = [
     title: "Templates & Tools",
     items: [
       {
+        title: "Universal Verifier",
+        href: "/verify",
+        description: "Verify .legitblock.json packets, Merkle inclusion proofs, and PQC signatures.",
+        badge: "DGCL § 224"
+      },
+      {
         title: "Template Encyclopedia (32)",
         href: "/templates",
         description: "For-Profit, Non-Profit, and Cooperative legal templates.",

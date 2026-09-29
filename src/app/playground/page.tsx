@@ -10,6 +10,9 @@ import { MerkleClauseInspector } from "../../components/MerkleClauseInspector";
 import { CovenantStudio } from "../../components/CovenantStudio";
 import { ConsortiumSimulator } from "../../components/ConsortiumSimulator";
 import { MerkleProofVerifier } from "../../components/MerkleProofVerifier";
+import { UniversalPacketVerifier } from "../../components/UniversalPacketVerifier";
+import { P2PCollaborativeStudio } from "../../components/P2PCollaborativeStudio";
+import { ConflictOfLawsSimulator } from "../../components/ConflictOfLawsSimulator";
 import { JurisdictionInspector } from "../../components/JurisdictionInspector";
 import { 
   PlayCircle, 
@@ -25,11 +28,14 @@ import {
   Sliders,
   Network,
   FileCheck2,
-  Globe
+  Globe,
+  Users
 } from "lucide-react";
 
 export default function PlaygroundPage() {
-  const [activeTab, setActiveTab] = useState<"chain" | "scenarios" | "redline" | "merkle" | "covenants" | "consortium" | "verifier" | "jurisdictions">("chain");
+  const [activeTab, setActiveTab] = useState<
+    "chain" | "scenarios" | "redline" | "merkle" | "covenants" | "consortium" | "universal-verifier" | "p2p-studio" | "conflict-laws" | "verifier" | "jurisdictions"
+  >("chain");
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
@@ -125,27 +131,63 @@ export default function PlaygroundPage() {
               </button>
 
               <button
-                onClick={() => setActiveTab("verifier")}
+                onClick={() => setActiveTab("universal-verifier")}
                 className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition border ${
-                  activeTab === "verifier"
+                  activeTab === "universal-verifier"
                     ? "bg-emerald-700 text-white border-emerald-700 shadow-sm"
                     : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:text-slate-900"
                 }`}
               >
                 <FileCheck2 className="w-4 h-4" />
-                <span>7. Merkle Proof Verifier</span>
+                <span>7. Universal Verifier</span>
+              </button>
+
+              <button
+                onClick={() => setActiveTab("p2p-studio")}
+                className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition border ${
+                  activeTab === "p2p-studio"
+                    ? "bg-cyan-700 text-white border-cyan-700 shadow-sm"
+                    : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:text-slate-900"
+                }`}
+              >
+                <Users className="w-4 h-4" />
+                <span>8. P2P Redline Studio</span>
+              </button>
+
+              <button
+                onClick={() => setActiveTab("conflict-laws")}
+                className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition border ${
+                  activeTab === "conflict-laws"
+                    ? "bg-teal-700 text-white border-teal-700 shadow-sm"
+                    : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:text-slate-900"
+                }`}
+              >
+                <Globe className="w-4 h-4" />
+                <span>9. Conflict of Laws</span>
+              </button>
+
+              <button
+                onClick={() => setActiveTab("verifier")}
+                className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition border ${
+                  activeTab === "verifier"
+                    ? "bg-slate-700 text-white border-slate-700 shadow-sm"
+                    : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:text-slate-900"
+                }`}
+              >
+                <GitBranch className="w-4 h-4" />
+                <span>10. Clause Proof Path</span>
               </button>
 
               <button
                 onClick={() => setActiveTab("jurisdictions")}
                 className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition border ${
                   activeTab === "jurisdictions"
-                    ? "bg-teal-700 text-white border-teal-700 shadow-sm"
+                    ? "bg-indigo-700 text-white border-indigo-700 shadow-sm"
                     : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:text-slate-900"
                 }`}
               >
-                <Globe className="w-4 h-4" />
-                <span>8. Statutory Jurisdictions</span>
+                <Scale className="w-4 h-4" />
+                <span>11. Statutory Jurisdictions</span>
               </button>
             </div>
           </div>
@@ -217,6 +259,24 @@ export default function PlaygroundPage() {
           {activeTab === "consortium" && (
             <div>
               <ConsortiumSimulator />
+            </div>
+          )}
+
+          {activeTab === "universal-verifier" && (
+            <div>
+              <UniversalPacketVerifier />
+            </div>
+          )}
+
+          {activeTab === "p2p-studio" && (
+            <div>
+              <P2PCollaborativeStudio />
+            </div>
+          )}
+
+          {activeTab === "conflict-laws" && (
+            <div>
+              <ConflictOfLawsSimulator />
             </div>
           )}
 
