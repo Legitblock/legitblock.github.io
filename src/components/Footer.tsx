@@ -53,6 +53,7 @@ export function Footer() {
               <li><Link href="/templates" className="hover:text-white transition-colors">32 Organization Templates</Link></li>
               <li><Link href="/api-reference" className="hover:text-white transition-colors">REST API Reference</Link></li>
               <li><Link href="/playground" className="hover:text-white transition-colors">Interactive Sandbox</Link></li>
+              <li><a href="https://legitblock.github.io/impressJS/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-1">3D Presentation Tour <ExternalLink className="w-3 h-3 text-cyan-400" /></a></li>
             </ul>
           </div>
 

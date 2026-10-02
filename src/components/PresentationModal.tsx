@@ -10,7 +10,7 @@ interface PresentationModalProps {
 
 export function PresentationModal({
   buttonClassName,
-  presentationUrl = "https://tekromancy.github.io/impressJS"
+  presentationUrl = "https://legitblock.github.io/impressJS/"
 }: PresentationModalProps) {
   const [isOpen, setIsOpen] = useState(false);
 

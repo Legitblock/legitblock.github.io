@@ -56,7 +56,7 @@ export default function HomePage() {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 pt-4">
               <a
-                href="https://tekromancy.github.io/impressJS"
+                href="https://legitblock.github.io/impressJS/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white font-semibold text-sm shadow-lg shadow-cyan-600/25 transition-all flex items-center justify-center gap-2 group"
@@ -64,7 +64,7 @@ export default function HomePage() {
                 <Globe className="w-4 h-4 text-cyan-200" />
                 Launch 3D Celestial Tour ⚡
               </a>
-              <PresentationModal />
+              <PresentationModal presentationUrl="https://legitblock.github.io/impressJS/" />
               <Link
                 href="/why-blockchain"
                 className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm shadow-lg shadow-emerald-600/25 transition-all flex items-center justify-center gap-2 group"
